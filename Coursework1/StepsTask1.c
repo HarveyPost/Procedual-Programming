@@ -46,16 +46,18 @@ int main()
 {
     FITNESS_DATA p1;
 
-    FILE* fp = fopen("FitnessData_2023.csv", "r");
+    // Open CSV file
+    FILE *file = fopen("FitnessData_2023.csv", "r");
 
-    if (!fp) {
+    if (file == NULL)
+    {
         printf("Error opening file\n");
         return 1;
     }
 
-    tokeniseRecord(fp, ",", p1.date, p1.time, p1.steps);
+    tokeniseRecord(file, ",", p1.date, p1.time, p1.steps);
 
-    fclose(fp);
+    fclose(file);
 
     printf("Date: %s\n", p1.date);
     printf("Time: %s\n", p1.time);
