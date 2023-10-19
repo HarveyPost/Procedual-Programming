@@ -44,24 +44,51 @@ void tokeniseRecord(const char *input, const char *delimiter,
 // Complete the main function
 int main()
 {
-    FITNESS_DATA p1;
+    // Declare an array named records of type FITNESS_DATA
+    FITNESS_DATA records[1000];
 
     // Open CSV file
     FILE *file = fopen("FitnessData_2023.csv", "r");
 
+    // Check if file exists and is not empty
     if (file == NULL)
     {
         printf("Error opening file\n");
         return 1;
     }
 
-    tokeniseRecord(file, ",", p1.date, p1.time, p1.steps);
+    // Counter for number of rows
+    int num_rows = 0;
+    char row[1000];
+
+    // Read each line of the file
+    while (fgets(row, 1000, file) != NULL)
+    {
+        // Store each token in a temp char array
+        char date[11];
+        char time[6];
+        char steps[1000];
+
+        // Tokenise each line
+        tokeniseRecord(row, ",", date, time, steps);
+
+        // Store each token in the appropriate struct field
+        strcpy(records[num_rows].date, date);
+        strcpy(records[num_rows].time, time);
+        records[num_rows].steps = atoi(steps);
+
+        // Increment number of rows
+        num_rows++;
+    }
 
     fclose(file);
 
-    printf("Date: %s\n", p1.date);
-    printf("Time: %s\n", p1.time);
-    printf("Steps: %s\n", p1.steps);
+    printf("Number of records in file: %d\n", num_rows);
+
+    // Print the first 3 records with times 7:30, 7:45 and 8:00
+    for (int i = 0; i < 3; i++) {
+        printf("%s/%s/%d\n", records[i].date, records[i].time, records[i].steps);
+    }
 
     return 0;
 }
