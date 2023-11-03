@@ -69,7 +69,6 @@ int main()
         char time[6];
         char steps[1000];
 
-        // Tokenise each line
         tokeniseRecord(row, ",", date, time, steps);
 
         // Store each token in the appropriate struct field
