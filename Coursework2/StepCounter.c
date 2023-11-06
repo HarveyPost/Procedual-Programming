@@ -206,13 +206,13 @@ int main() {
 
     while (1) {
         printf("Option\n");
-        printf("A\n");
-        printf("B\n");
-        printf("C\n");
-        printf("D\n");
-        printf("E\n");
-        printf("F\n");
-        printf("Q\n");
+        printf("A: Specify the filename to be imported\n");
+        printf("B: Display the total number of records in the file\n");
+        printf("C: Find the date and time of the timeslot with the fewest steps\n");
+        printf("D: Find the date and time of the timeslot with the largest number of steps\n");
+        printf("E: Find the mean step count of all the records in the file\n");
+        printf("F: Find the longest continuous period where the step count is above 500 steps\n");
+        printf("Q: Quit\n");
 
         fgets(input, 256, stdin);
         input[strcspn(input, "\n")] = '\0';
