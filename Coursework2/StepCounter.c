@@ -5,7 +5,7 @@
 
 char get_filename(char *filename)
 {
-    printf("Enter the filename: ");
+    printf("Input filename: ");
     fgets(filename, 256, stdin);
     // Remove the newline character from the filename
     filename[strcspn(filename, "\n")] = '\0';
@@ -124,7 +124,7 @@ void get_mean_steps(FILE *file)
         num_rows++;
     }
 
-    printf("Mean steps: %d\n", total_steps / num_rows);
+    printf("Mean step count: %d\n", total_steps / num_rows);
 }
 
 void get_longest_period(FILE *file)
@@ -205,7 +205,7 @@ int main() {
     int num_rows = 0;
 
     while (1) {
-        printf("Option\n");
+        printf("Menu Options:\n");
         printf("A: Specify the filename to be imported\n");
         printf("B: Display the total number of records in the file\n");
         printf("C: Find the date and time of the timeslot with the fewest steps\n");
@@ -213,6 +213,7 @@ int main() {
         printf("E: Find the mean step count of all the records in the file\n");
         printf("F: Find the longest continuous period where the step count is above 500 steps\n");
         printf("Q: Quit\n");
+        printf("Enter choice: ");
 
         fgets(input, 256, stdin);
         input[strcspn(input, "\n")] = '\0';
