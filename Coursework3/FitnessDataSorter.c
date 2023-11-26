@@ -111,4 +111,6 @@ int main() {
     fclose(newfile);
 
     printf("Data sorted and written to %s\n", newfilename);
+
+    return 0;
 }
