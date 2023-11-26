@@ -151,7 +151,10 @@ void get_mean_steps(FILE *file)
         num_rows++;
     }
 
-    printf("Mean step count: %d\n", total_steps / num_rows);
+    // Rounds the number
+    int meanNumber = ((float)total_steps / (float)num_rows) + 0.5;
+
+    printf("Mean step count: %d\n", meanNumber);
 }
 
 void get_longest_period(FILE *file)
@@ -256,7 +259,7 @@ int main() {
             if (file == NULL)
             {
                 printf("Error opening file\n");
-                continue;;
+                return 1;
             }
             fclose(file);
         }
