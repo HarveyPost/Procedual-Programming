@@ -25,13 +25,6 @@ void tokeniseRecord(char *record, char delimiter, char *date, char *time, int *s
     }
 }
 
-// Function to compare the number of steps
-int compareSteps(const void *a, const void *b) {
-    FitnessData dataA = *(FitnessData *)a;
-    FitnessData dataB = *(FitnessData *)b;
-    return dataB.steps - dataA.steps;
-}
-
 int main() {
     
     // Declare an array named records of type FITNESS_DATA
@@ -85,10 +78,20 @@ int main() {
 
     fclose(file);
 
-    // Reference: https://www.tutorialspoint.com/c_standard_library/c_function_qsort.htm
     // Sort the records by number of steps in descending order
-    qsort(records, num_rows, sizeof(FitnessData), compareSteps);
-
+    for (int i = 0; i < num_rows; i++)
+    {
+        for (int j = i + 1; j < num_rows; j++)
+        {
+            if (records[i].steps < records[j].steps)
+            {
+                FitnessData temp = records[i];
+                records[i] = records[j];
+                records[j] = temp;
+            }
+        }
+    }
+    
     // Create the new tsv file
     char newfilename[1000];
     sprintf(newfilename, "%s.tsv", filename);
