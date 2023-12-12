@@ -60,7 +60,8 @@ int main() {
         
         // Reference: https://www.tutorialspoint.com/c_standard_library/c_function_sscanf.htm
         // Check for format of the line
-        if ((sscanf(row, "%10s %5s %d", date, time, &steps) != 3))
+        // "!= 3" chekcs that sscanf successfully read 3 items from the string
+        if ((sscanf(row, "%10s, %5s, %d", date, time, &steps) != 3))
         {
             printf("Error: invalid file\n");
             return 1;
